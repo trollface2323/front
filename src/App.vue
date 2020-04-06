@@ -1,12 +1,19 @@
 <template>
+  <div>
   <div id="app" align="justify">
+
+<!--    first page-->
+
+    <a v-if="page">
     <img alt="Vue logo" src="./assets/logo.png">
     <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
+
     <a><br>
+      <span> <b>Список вещей</b></span><br>
       <input v-model="newHuy" type="text" align="center" v-on:keyup.enter="addHuy"> &emsp;
       <input type="submit" value="send" @click="addHuy">
-
     </a>
+
     <ul>
       <li v-for="(item, index) in items" :key="item.message">
         <input type="checkbox" v-model="item.done">
@@ -21,6 +28,32 @@
 
 
     </ul>
+    </a>
+  </div>
+
+<!--     second page-->
+
+    <a v-if="!page" align="center">
+      <img alt="Vue logo" src="./assets/logo.png">
+      <span><b> Список команды </b></span><br>
+      <ul>
+        <input v-model="newHuy1" type="text" align="center" v-on:keyup.enter="addHuy2"> &emsp;
+
+        <li v-for="(team, index) in team" :key="team.name">
+          <input type="checkbox" v-model="team.done">
+
+          <span v-if="team.done"><s>{{index+1}}: {{team.name}}</s></span>
+          <span v-else>{{index+1}}: {{team.name}}</span> &emsp;
+          <input type="submit" value="delete" @click="del2(index)">
+        </li>
+        <p></p>
+        <input type="submit" value="check all" @click="check_all2">
+
+      </ul>
+
+    </a>
+    <input type="submit" value="page 1" @click="page1"> &emsp;
+    <input type="submit" value="page 2" @click="page2">
   </div>
 </template>
 
@@ -35,20 +68,39 @@
     data(){
       return{
         newHuy:"",
+        newHuy1:"",
+        page:false, // выбор отображаемой страницы
 
         //name2:"punkt 1",
         // name2:"punkt 2",
         items:[
-          {name:"huy",done:false, id:2, message: 'her'},
-          {name:"huy2",done:false, id:1, message:'her2'}
+          {name:"name",done:false, id:2, message: 'message'},
+          {name:"name2",done:false, id:1, message:'message2'}
         ],
-        pressed_button: 0
+        team:[
+          {name:"kalash",done:false, id:2, message: 'her'},
+          {name:"Lyoha",done:false, id:1, message:'her2'}
+        ],
+
+        pressed_button: 0,
+        pressed_button1: 0
 
       }
     },
     methods:{
+      // удаление элемента на перво странице
       del(index){
           this.$delete(this.items,index)
+      },
+      // удаление элемента на второй странице
+      del2(index){
+          this.$delete(this.team,index)
+      },
+      page1(){
+        this.page = true;
+      },
+      page2(){
+        this.page = false;
       },
       check_all(){
         this.items.forEach((v) => {
@@ -64,12 +116,30 @@
           this.pressed_button = 0;
         }
       },
+      check_all2(){
+        this.team.forEach((v) => {
+          if (this.pressed_button1 == 0){
+            v.done = true;
+            } else {
+            v.done = false;
+          }
+        });
+        if (this.pressed_button1 == 0){
+          this.pressed_button1 = 1;
+        } else {
+          this.pressed_button1 = 0;
+        }
+      },
       huy({target}){
         console.log(target.value)
       },
       addHuy(){
         this.items.push({done:false, message: this.newHuy}),
                 this.newHuy=""
+      },
+      addHuy2(){
+        this.team.push({done:false, name: this.newHuy}),
+                this.newHuy1=""
       },
     }
   }
