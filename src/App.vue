@@ -37,9 +37,9 @@
       <img alt="Vue logo" src="./assets/logo.png">
       <span><b> Список команды </b></span><br>
       <ul>
-        <input v-model="newHuy1" type="text" align="center" v-on:keyup.enter="addHuy2"> &emsp;
+        <input v-model="newHuy2" type="text" align="center" v-on:keyup.enter="addHuy2"> &emsp;
 
-        <li v-for="(team, index) in team" :key="team.name">
+        <li v-for="(team, index) in teams" :key="team.name">
           <input type="checkbox" v-model="team.done">
 
           <span v-if="team.done"><s>{{index+1}}: {{team.name}}</s></span>
@@ -68,7 +68,7 @@
     data(){
       return{
         newHuy:"",
-        newHuy1:"",
+        newHuy2:"",
         page:false, // выбор отображаемой страницы
 
         //name2:"punkt 1",
@@ -77,7 +77,7 @@
           {name:"name",done:false, id:2, message: 'message'},
           {name:"name2",done:false, id:1, message:'message2'}
         ],
-        team:[
+        teams:[
           {name:"kalash",done:false, id:2, message: 'her'},
           {name:"Lyoha",done:false, id:1, message:'her2'}
         ],
@@ -94,7 +94,7 @@
       },
       // удаление элемента на второй странице
       del2(index){
-          this.$delete(this.team,index)
+          this.$delete(this.teams,index)
       },
       page1(){
         this.page = true;
@@ -117,7 +117,7 @@
         }
       },
       check_all2(){
-        this.team.forEach((v) => {
+        this.teams.forEach((v) => {
           if (this.pressed_button1 == 0){
             v.done = true;
             } else {
@@ -134,12 +134,12 @@
         console.log(target.value)
       },
       addHuy(){
-        this.items.push({done:false, message: this.newHuy}),
+        this.items.push({done:false, message: this.newHuy }),
                 this.newHuy=""
       },
       addHuy2(){
-        this.team.push({done:false, name: this.newHuy}),
-                this.newHuy1=""
+        this.teams.push({done:false, name: this.newHuy2 }),
+                this.newHuy2=""
       },
     }
   }
