@@ -24,6 +24,8 @@
       </li>
       <p></p>
       <input type="submit" value="check all" @click="check_all">
+      {{a}} {{b}}
+      {{pressed_button}}
 
 
 
@@ -39,11 +41,11 @@
       <ul>
         <input v-model="newHuy2" type="text" align="center" v-on:keyup.enter="addHuy2"> &emsp;
 
-        <li v-for="(team, index) in teams" :key="team.name">
-          <input type="checkbox" v-model="team.done">
+        <li v-for="(teams, index) in teams" :key="teams.name">
+          <input type="checkbox" v-model="teams.done">
 
-          <span v-if="team.done"><s>{{index+1}}: {{team.name}}</s></span>
-          <span v-else>{{index+1}}: {{team.name}}</span> &emsp;
+          <span v-if="teams.done"><s>{{index+1}}: {{teams.name}}</s></span>
+          <span v-else>{{index+1}}: {{teams.name}}</span> &emsp;
           <input type="submit" value="delete" @click="del2(index)">
         </li>
         <p></p>
@@ -69,7 +71,7 @@
       return{
         newHuy:"",
         newHuy2:"",
-        page:false, // выбор отображаемой страницы
+        page:true, // выбор отображаемой страницы
 
         //name2:"punkt 1",
         // name2:"punkt 2",
@@ -83,7 +85,9 @@
         ],
 
         pressed_button: 0,
-        pressed_button1: 0
+        pressed_button1: 0,
+        a:0,
+        b: 0
 
       }
     },
@@ -103,32 +107,38 @@
         this.page = false;
       },
       check_all(){
+        for (let i = 0; i < this.items.length; i++){
+          if (this.items[i].done){
+            this.a = 1
+          } else{
+            this.pressed_button = 1;
+          }
+        }
         this.items.forEach((v) => {
           if (this.pressed_button == 0){
+            v.done = false; // расчеркивает должно
+          } else {
             v.done = true;
-            } else {
-            v.done = false;
           }
         });
-        if (this.pressed_button == 0){
-          this.pressed_button = 1;
-        } else {
-          this.pressed_button = 0;
-        }
+        this.pressed_button = 0;
       },
       check_all2(){
+        for (let i = 0; i < this.teams.length; i++){
+          if (this.teams[i].done){
+            this.a = 1
+          } else{
+            this.pressed_button1 = 1;
+          }
+        }
         this.teams.forEach((v) => {
           if (this.pressed_button1 == 0){
+            v.done = false; // расчеркивает должно
+          } else {
             v.done = true;
-            } else {
-            v.done = false;
           }
         });
-        if (this.pressed_button1 == 0){
-          this.pressed_button1 = 1;
-        } else {
-          this.pressed_button1 = 0;
-        }
+        this.pressed_button1 = 0;
       },
       huy({target}){
         console.log(target.value)
