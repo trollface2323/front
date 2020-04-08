@@ -1,12 +1,12 @@
 <template>
   <div>
-  <div id="app" align="justify">
+  <div v-if="page" id="app" align="justify">
 
 <!--    first page-->
 
-    <a v-if="page">
+
     <img alt="Vue logo" src="./assets/logo.png">
-    <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
+        <HelloWorld msg="Welcome to Your Vue.js App"/>
 
     <a><br>
       <span> <b>Список вещей</b></span><br>
@@ -23,20 +23,20 @@
         <input type="submit" value="delete" @click="del(index)">
       </li>
       <p></p>
-      <input type="submit" value="check all" @click="check_all">
-      {{a}} {{b}}
-      {{pressed_button}}
+      <input type="submit" value="check all" @click="check_all"><br>
+
+      <input type="submit" value="page 1" @click="page1"> &emsp;
+      <input type="submit" value="page 2" @click="page2">
 
 
 
     </ul>
-    </a>
+
   </div>
 
 <!--     second page-->
-
-    <a v-if="!page" align="center">
-      <img alt="Vue logo" src="./assets/logo.png">
+  <div v-if="!page" align="center">
+      <img alt="Vue logo" src="./assets/logo.png"> <br>
       <span><b> Список команды </b></span><br>
       <ul>
         <input v-model="newHuy2" type="text" align="center" v-on:keyup.enter="addHuy2"> &emsp;
@@ -53,19 +53,19 @@
 
       </ul>
 
-    </a>
     <input type="submit" value="page 1" @click="page1"> &emsp;
     <input type="submit" value="page 2" @click="page2">
+    </div>
   </div>
 </template>
 
 <script>
-  // import HelloWorld from './components/HelloWorld.vue'
+  import HelloWorld from './components/HelloWorld.vue'
 
   export default {
     name: 'App',
     components: {
-      // HelloWorld
+      HelloWorld
     },
     data(){
       return{
