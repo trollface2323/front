@@ -1,71 +1,22 @@
 <template>
   <div>
-  <div v-if="page" id="app" align="justify">
-
-<!--    first page-->
-
-
-    <img alt="Vue logo" src="./assets/logo.png">
-        <HelloWorld msg="Welcome to Your Vue.js App"/>
-
-    <a><br>
-      <span> <b>Список вещей</b></span><br>
-      <input v-model="newHuy" type="text" align="center" v-on:keyup.enter="addHuy"> &emsp;
-      <input type="submit" value="send" @click="addHuy">
-    </a>
-
-    <ul>
-      <li v-for="(item, index) in items" :key="item.message">
-        <input type="checkbox" v-model="item.done">
-
-        <span v-if="item.done"><s>{{index+1}} {{item.message}}</s></span>
-        <span v-else>{{index+1}}: {{item.message}}</span> &emsp;
-        <input type="submit" value="delete" @click="del(index)">
-      </li>
-      <p></p>
-      <input type="submit" value="check all" @click="check_all"><br>
-
-      <input type="submit" value="page 1" @click="page1"> &emsp;
-      <input type="submit" value="page 2" @click="page2">
-
-
-
-    </ul>
-
-  </div>
-
-<!--     second page-->
-  <div v-if="!page" align="center">
-      <img alt="Vue logo" src="./assets/logo.png"> <br>
-      <span><b> Список команды </b></span><br>
-      <ul>
-        <input v-model="newHuy2" type="text" align="center" v-on:keyup.enter="addHuy2"> &emsp;
-
-        <li v-for="(teams, index) in teams" :key="teams.name">
-          <input type="checkbox" v-model="teams.done">
-
-          <span v-if="teams.done"><s>{{index+1}}: {{teams.name}}</s></span>
-          <span v-else>{{index+1}}: {{teams.name}}</span> &emsp;
-          <input type="submit" value="delete" @click="del2(index)">
-        </li>
-        <p></p>
-        <input type="submit" value="check all" @click="check_all2">
-
-      </ul>
+  <Page v-if="page" :items="items"></Page>
+  <Page v-else :items="teams"></Page>
 
     <input type="submit" value="page 1" @click="page1"> &emsp;
     <input type="submit" value="page 2" @click="page2">
     </div>
-  </div>
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld.vue'
+  // import HelloWorld from './components/HelloWorld.vue'
+  import Page from './components/Page.vue'
 
   export default {
     name: 'App',
     components: {
-      HelloWorld
+      // HelloWorld,
+      Page
     },
     data(){
       return{
@@ -86,8 +37,6 @@
 
         pressed_button: 0,
         pressed_button1: 0,
-        a:0,
-        b: 0
 
       }
     },
