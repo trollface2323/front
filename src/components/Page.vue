@@ -1,31 +1,31 @@
 <template>
-    <div id="app" align="justify">
+    <div>
+        <div class="background">
+        <div class="date">
+            {{data}}
+        </div>
 
-        <!--    first page-->
-
-
-        <img alt="Vue logo" src="../assets/logo.png">
-<!--        <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-
-        <a><br>
-            <span> <b>Список вещей</b></span><br>
-            <input v-model="newHuy" type="text" align="center" v-on:keyup.enter="addHuy"> &emsp;
-            <input type="submit" value="send" @click="addHuy">
-        </a>
-
+        <div class="text_area">
+        <p><br>
+            <input v-model="newHuy" type="text" align="center" v-on:keyup.enter="addHuy" placeholder="Enter a task"> &emsp;
+            <input type="submit" value="Add Task" @click="addHuy" id="add_button">
+        </p>
+        </div>
+        <div align="left">
         <ul>
             <li v-for="(item, index) in items" :key="item.message">
                 <input type="checkbox" v-model="item.done">
 
                 <span v-if="item.done"><s>{{index+1}} {{item.message}}</s></span>
                 <span v-else>{{index+1}}: {{item.message}}</span> &emsp;
-                <input type="submit" value="delete" @click="del(index)">
+                <input type="submit" value="delete" @click="del(index)" align="right">
             </li>
             <p></p>
             <input type="submit" value="check all" @click="check_all"><br>
 
         </ul>
-
+        </div>
+        </div>
     </div>
 
 </template>
@@ -37,6 +37,8 @@
             return {
                 newHuy: "",
                 pressed_button: 0,
+                data: new Date(),
+
             }
         },
         props:{
@@ -77,5 +79,25 @@
 </script>
 
 <style>
+    #add_button {
+        background: lightblue;
+        border-radius: 5px;
 
+    }
+    .background{
+        background-color: gray;
+        width: 800px;
+        height: 350px;
+        padding-left: 100px;
+        padding-top: 50px;
+        margin-left: 150px;
+        border-radius: 5px;
+    }
+    .text_area{
+        border-bottom: 10px green;
+        margin-left: 22px;
+    }
+    .date{
+        margin-left: 22px;
+    }
 </style>

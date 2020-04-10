@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background_general">
   <Page v-if="page" :items="items"></Page>
   <Page v-else :items="teams"></Page>
 
@@ -105,12 +105,11 @@
 </script>
 
 <style>
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+  .background_general{
+    background: lightblue; /* Цвет фона */
+    height: 500px;
+    width: 100%;
+    padding-top: 100px;
   }
 </style>
+
