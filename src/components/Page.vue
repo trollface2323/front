@@ -17,8 +17,8 @@
                 <input type="checkbox" v-model="item.done">
 
                 <span v-if="item.done"><s>{{index+1}} {{item.message}}</s></span>
-                <span v-else>{{index+1}}: {{item.message}}</span> &emsp;
-                <input type="submit" value="delete" @click="del(index)" align="right">
+                <span v-else>{{index+1}}: {{item.message}}</span> &emsp
+                <input type="submit" value="delete" @click="del(index)" class="delete">
             </li>
             <p></p>
             <input type="submit" value="check all" @click="check_all"><br>
@@ -92,12 +92,22 @@
         padding-top: 50px;
         margin-left: 150px;
         border-radius: 5px;
+        box-shadow: 2px 2px 2px 1px darkgray;
+
     }
     .text_area{
-        border-bottom: 10px green;
-        margin-left: 22px;
+        border-bottom: 2px solid navajowhite;
+        margin-left: 22px
     }
     .date{
         margin-left: 22px;
     }
+    .delete{
+        float:right;
+        height: 12px;
+    }
+    .list{
+        border-bottom: 2px solid navajowhite;
+    }
+
 </style>
