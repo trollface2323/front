@@ -13,11 +13,11 @@
         </div>
         <div align="left">
         <ul>
-            <li v-for="(item, index) in items" :key="item.message">
+            <li v-for="(item, index) in items" :key="item.message" class="list">
                 <input type="checkbox" v-model="item.done">
 
                 <span v-if="item.done"><s>{{index+1}} {{item.message}}</s></span>
-                <span v-else>{{index+1}}: {{item.message}}</span> &emsp
+                <span v-else>{{index+1}}: {{item.message}}</span>
                 <input type="submit" value="delete" @click="del(index)" class="delete">
             </li>
             <p></p>
@@ -38,7 +38,6 @@
                 newHuy: "",
                 pressed_button: 0,
                 data: new Date(),
-
             }
         },
         props:{
@@ -73,6 +72,7 @@
                 this.items.push({done:false, message: this.newHuy }),
                     this.newHuy=""
             },
+
         }
     }
 
@@ -104,10 +104,13 @@
     }
     .delete{
         float:right;
-        height: 12px;
+        height: 20px;
+        margin-right: 15px;
     }
     .list{
         border-bottom: 2px solid navajowhite;
+        margin-top: 20px;
+        height: 35px;
     }
 
 </style>
