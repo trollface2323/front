@@ -1,11 +1,18 @@
-<template>
+<template >
   <div class="background_general">
-  <Page v-if="page" :items="items"></Page>
-  <Page v-else :items="teams"></Page>
+    <div class="background">
+      <span class="span_time"> типа время </span>
 
-    <input type="submit" value="page 1" @click="page1"> &emsp;
-    <input type="submit" value="page 2" @click="page2">
+      <span class="span_input">
+      <input type="submit" value="Incomplete Tasks" @click="page1" class="input"> &emsp;
+      <input type="submit" value="Complete Tasks" @click="page2" class="input">
+      </span><br>
+      <span class="size"> 2 Active Tasks</span>
+
+      <Page v-if="page" :items="items"></Page>
+      <Page v-else :items="teams"></Page>
     </div>
+      </div>
 </template>
 
 <script>
@@ -41,13 +48,9 @@
       }
     },
     methods:{
-      // удаление элемента на перво странице
+      // удаление элемента
       del(index){
           this.$delete(this.items,index)
-      },
-      // удаление элемента на второй странице
-      del2(index){
-          this.$delete(this.teams,index)
       },
       page1(){
         this.page = true;
@@ -105,11 +108,65 @@
 </script>
 
 <style>
-  .background_general{
-    background: lightblue; /* Цвет фона */
-    height: 500px;
+/* изменяем шрифт*/
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+  ul#app>li{
+
+  }
+
+  .background_general {
+    background: #61DBFB; /* Цвет фона */
+    height: auto;
     width: 100%;
     padding-top: 100px;
+    color: white;
   }
-</style>
+  /*изменяем шрифт*/
+  div{
+    font-family: 'Roboto', sans-serif;
+  }
+   /*псевдокласс*/
 
+  .hover:hover{
+      color:green;
+    }
+  .span_input{
+    float: right;
+    margin-right: 70px;
+  }
+  .background{
+    background-color: #393F49;
+    width: 800px;
+    /*height: 350px;*/
+    padding-left: 100px;
+    padding-top: 50px;
+    margin-left: 150px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px 2px gray;
+
+  }
+  .span_time {
+
+  }
+  .input{
+    background-color: #393F49;
+    border: 0;
+    outline: none;
+    color: white;
+  }
+  active:active {
+    color: red;
+  }
+  .enable{
+    color: #D1D2D4;
+  }
+  .disable{
+    color: #777B81;
+  }
+  .size{
+    font-size: 12px;
+    color: #53A4BC;
+  }
+
+</style>

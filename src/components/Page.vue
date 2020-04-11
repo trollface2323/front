@@ -1,10 +1,6 @@
 <template>
     <div>
-        <div class="background">
-        <div class="date">
-            {{data}}
-        </div>
-
+        <div>
         <div class="text_area">
         <p><br>
             <input v-model="newHuy" type="text" align="center" v-on:keyup.enter="addHuy" placeholder="Enter a task"> &emsp;
@@ -12,18 +8,23 @@
         </p>
         </div>
         <div align="left">
-        <ul>
-            <li v-for="(item, index) in items" :key="item.message" class="list">
-                <input type="checkbox" v-model="item.done">
+        <dl>
+            <dt v-for="(item, index) in items" :key="item.message" class="list">
+
+                <i class="fas fa-check-circle" style="color: red"></i>
+
+                <input type="checkbox" v-model="item.done" class="checkbox">
 
                 <span v-if="item.done"><s>{{index+1}} {{item.message}}</s></span>
                 <span v-else>{{index+1}}: {{item.message}}</span>
-                <input type="submit" value="delete" @click="del(index)" class="delete">
-            </li>
+                <span class="icon"><i class="far fa-trash-alt" ></i></span>
+<!--                кнопка удаления-->
+<!--                <input type="submit" value="delete" @click="del(index)" class="delete">-->
+            </dt>
             <p></p>
-            <input type="submit" value="check all" @click="check_all"><br>
+<!--            <input type="submit" value="check all" @click="check_all"><br>-->
 
-        </ul>
+        </dl>
         </div>
         </div>
     </div>
@@ -50,6 +51,9 @@
             },
             page1(){
                 this.page = true;
+            },
+            page2(){
+                this.page = false;
             },
             check_all(){
                 for (let i = 0; i < this.items.length; i++){
@@ -80,37 +84,30 @@
 
 <style>
     #add_button {
-        background: lightblue;
+        background: #61DBFB;
         border-radius: 5px;
-
-    }
-    .background{
-        background-color: gray;
-        width: 800px;
-        height: 350px;
-        padding-left: 100px;
-        padding-top: 50px;
-        margin-left: 150px;
-        border-radius: 5px;
-        box-shadow: 2px 2px 2px 1px darkgray;
-
     }
     .text_area{
-        border-bottom: 2px solid navajowhite;
-        margin-left: 22px
-    }
-    .date{
-        margin-left: 22px;
+        border-bottom: 2px solid #62686F;
+
     }
     .delete{
         float:right;
         height: 20px;
         margin-right: 15px;
+        background-image: url("");
     }
     .list{
-        border-bottom: 2px solid navajowhite;
+        border-bottom: 2px solid #62686F;
         margin-top: 20px;
         height: 35px;
+    }
+    .checkbox {
+        opacity: 0;
+    }
+    .icon{
+        float: right;
+        margin-right: 100px;
     }
 
 </style>
