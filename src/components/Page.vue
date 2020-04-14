@@ -1,31 +1,32 @@
 <template>
-    <div id="app" align="justify">
+    <div>
+        <div>
+        <div class="text_area">
+        <p><br>
+            <input v-model="newHuy" type="text" align="center" v-on:keyup.enter="addHuy" placeholder="Enter a task"> &emsp;
+            <input type="submit" value="Add Task" @click="addHuy" id="add_button">
+        </p>
+        </div>
+        <div align="left">
+        <dl>
+            <dt v-for="(item, index) in items" :key="item.message" class="list">
 
-        <!--    first page-->
+                <i class="fas fa-check-circle" style="color: red"></i>
 
-
-        <img alt="Vue logo" src="../assets/logo.png">
-<!--        <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-
-        <a><br>
-            <span> <b>Список вещей</b></span><br>
-            <input v-model="newHuy" type="text" align="center" v-on:keyup.enter="addHuy"> &emsp;
-            <input type="submit" value="send" @click="addHuy">
-        </a>
-
-        <ul>
-            <li v-for="(item, index) in items" :key="item.message">
-                <input type="checkbox" v-model="item.done">
+                <input type="checkbox" v-model="item.done" class="checkbox">
 
                 <span v-if="item.done"><s>{{index+1}} {{item.message}}</s></span>
-                <span v-else>{{index+1}}: {{item.message}}</span> &emsp;
-                <input type="submit" value="delete" @click="del(index)">
-            </li>
+                <span v-else>{{index+1}}: {{item.message}}</span>
+                <span class="icon"><i class="far fa-trash-alt" ></i></span>
+<!--                кнопка удаления-->
+<!--                <input type="submit" value="delete" @click="del(index)" class="delete">-->
+            </dt>
             <p></p>
-            <input type="submit" value="check all" @click="check_all"><br>
+<!--            <input type="submit" value="check all" @click="check_all"><br>-->
 
-        </ul>
-
+        </dl>
+        </div>
+        </div>
     </div>
 
 </template>
@@ -37,6 +38,7 @@
             return {
                 newHuy: "",
                 pressed_button: 0,
+                data: new Date(),
             }
         },
         props:{
@@ -49,6 +51,9 @@
             },
             page1(){
                 this.page = true;
+            },
+            page2(){
+                this.page = false;
             },
             check_all(){
                 for (let i = 0; i < this.items.length; i++){
@@ -71,11 +76,38 @@
                 this.items.push({done:false, message: this.newHuy }),
                     this.newHuy=""
             },
+
         }
     }
 
 </script>
 
 <style>
+    #add_button {
+        background: #61DBFB;
+        border-radius: 5px;
+    }
+    .text_area{
+        border-bottom: 2px solid #62686F;
+
+    }
+    .delete{
+        float:right;
+        height: 20px;
+        margin-right: 15px;
+        background-image: url("");
+    }
+    .list{
+        border-bottom: 2px solid #62686F;
+        margin-top: 20px;
+        height: 35px;
+    }
+    .checkbox {
+        opacity: 0;
+    }
+    .icon{
+        float: right;
+        margin-right: 100px;
+    }
 
 </style>
