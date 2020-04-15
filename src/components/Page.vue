@@ -17,6 +17,7 @@
 
                 <span v-if="item.done"><s>{{index+1}} {{item.message}}</s></span>
                 <span v-else>{{index+1}}: {{item.message}}</span>
+                <span style="margin-left: 300px">{{date}}</span>
                 <span class="icon"><i class="far fa-trash-alt" ></i></span>
 <!--                кнопка удаления-->
 <!--                <input type="submit" value="delete" @click="del(index)" class="delete">-->
@@ -32,13 +33,15 @@
 </template>
 
 <script>
+    var moment = require('moment');
+    console.log(moment(). format());
     export default {
         name: "page2",
         data() {
             return {
                 newHuy: "",
                 pressed_button: 0,
-                data: new Date(),
+                date: moment().fromNow(),
             }
         },
         props:{

@@ -1,12 +1,13 @@
 <template >
   <div class="background_general">
     <div class="background">
-      <span class="span_time"> типа время </span>
+      <span class="span_time"> {{date}} </span>
 
       <span class="span_input">
       <input type="submit" value="Incomplete Tasks" @click="page1" class="input"> &emsp;
       <input type="submit" value="Complete Tasks" @click="page2" class="input">
       </span><br>
+<!--      TODO: FGHJKL-->
       <span class="size"> 2 Active Tasks</span>
 
       <Page v-if="page" :items="items"></Page>
@@ -16,8 +17,12 @@
 </template>
 
 <script>
+  var moment = require('moment');
+  console.log(moment(). format());
+  moment.locale('ru');
   // import HelloWorld from './components/HelloWorld.vue'
   import Page from './components/Page.vue'
+
 
   export default {
     name: 'App',
@@ -27,6 +32,7 @@
     },
     data(){
       return{
+        date: moment().format("dddd, MMM D" ),
         newHuy:"",
         newHuy2:"",
         page:true, // выбор отображаемой страницы
